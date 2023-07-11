@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ChessFigure : MonoBehaviour
+[System.Serializable]
+public class ChessFigure : MonoBehaviour
 {
-    public int CurrentX { get; set; }
-    public int CurrentY { get; set; }
-    public bool isWhite;
-    public FigureType type = FigureType.Pawn;
+    [SerializeField]
+    public ChessFigureData data = new ChessFigureData();
     public int moveCount = 0;
+    
+
+   
     public void SetPosition(int x, int y)
     {
-        CurrentX = x;
-        CurrentY = y;
+        data.CurrentX = x;
+        data.CurrentY = y;
     }
 
     public virtual bool[,] PossibleMove(ChessFigure[,] position)
@@ -20,10 +22,10 @@ public abstract class ChessFigure : MonoBehaviour
         return new bool[8, 8];
     }
 
-    public virtual Vector2Int[] MoveCoordinateList(ChessFigure[,] position)
+    public virtual Vector2[] MoveCoordinateList(ChessFigure[,] position)
     {
         var allowedMoves = PossibleMove(position);
-        Vector2Int[] moveCoordinateList = new Vector2Int[moveCount];
+        Vector2[] moveCoordinateList = new Vector2[moveCount];
         int movesAdded = 0;
         for (int i = 0; i < 8; i++)
         {
@@ -31,11 +33,20 @@ public abstract class ChessFigure : MonoBehaviour
             {
                 if (allowedMoves[i, j])
                 {
-                    moveCoordinateList[movesAdded] = new Vector2Int(i, j);
+                    moveCoordinateList[movesAdded] = new Vector2(i, j);
                     movesAdded++;
                 }
             }
         }
         return moveCoordinateList;
     }
+}
+[System.Serializable]
+public class ChessFigureData
+{
+    public int CurrentX { get; set; } 
+    public int CurrentY { get; set; }
+    public bool isWhite;
+    public FigureType type = FigureType.Pawn;
+
 }

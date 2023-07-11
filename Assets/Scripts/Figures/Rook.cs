@@ -12,20 +12,20 @@ public class Rook : ChessFigure
         int i;
         bool reachedEnd = true;
         // Left
-        i = CurrentX;
+        i = data.CurrentX;
         while (true)
         {
             i--;
             if (i < 0) break;
-            c = position[i, CurrentY];
+            c = position[i, data.CurrentY];
             if (c == null)
             {
-                r[i, CurrentY] = true;
+                r[i, data.CurrentY] = true;
                 moveCount++;
             }
             else
             {
-                if (c.isWhite != isWhite){ r[i, CurrentY] = true;
+                if (c.data.isWhite != data.isWhite){ r[i, data.CurrentY] = true;
                 moveCount++;
             }
                 reachedEnd = false;
@@ -40,17 +40,17 @@ public class Rook : ChessFigure
             while (true)
             {
                 i--;
-                if (i < CurrentX) break;
-                c = position[i, CurrentY];
+                if (i < data.CurrentX) break;
+                c = position[i, data.CurrentY];
                 if (c == null){
-                    r[i, CurrentY] = true;
+                    r[i, data.CurrentY] = true;
                 moveCount++;
             }
                 else
                 {
-                    if (c.isWhite != isWhite)
+                    if (c.data.isWhite != data.isWhite)
                     {
-                        r[i, CurrentY] = true;
+                        r[i, data.CurrentY] = true;
                         moveCount++;
                     }
                     break;
@@ -59,20 +59,20 @@ public class Rook : ChessFigure
         }
         reachedEnd = true;
         // Right
-        i = CurrentX;
+        i = data.CurrentX;
         while (true)
         {
             i++;
             if (i >= 8) break;
-            c = position[i, CurrentY];
-            if (c == null){ r[i, CurrentY] = true;
+            c = position[i, data.CurrentY];
+            if (c == null){ r[i, data.CurrentY] = true;
             moveCount++;
         }
             else
             {
-                if (c.isWhite != isWhite)
+                if (c.data.isWhite != data.isWhite)
                 {
-                    r[i, CurrentY] = true;
+                    r[i, data.CurrentY] = true;
                     moveCount++;
                 }
                 reachedEnd = false;
@@ -87,16 +87,16 @@ public class Rook : ChessFigure
             while (true)
             {
                 i++;
-                if (i >= CurrentX) break;
-                c = position[i, CurrentY];
-                if (c == null){ r[i, CurrentY] = true;
+                if (i >= data.CurrentX) break;
+                c = position[i, data.CurrentY];
+                if (c == null){ r[i, data.CurrentY] = true;
                 moveCount++;
             }
                 else
                 {
-                    if (c.isWhite != isWhite)
+                    if (c.data.isWhite != data.isWhite)
                     {
-                        r[i, CurrentY] = true;
+                        r[i, data.CurrentY] = true;
                         moveCount++;
                     }
                     break;
@@ -105,20 +105,20 @@ public class Rook : ChessFigure
         }
 
         // Forward
-        i = CurrentY;
+        i = data.CurrentY;
         while (true)
         {
             i++;
             if (i >= 8) break;
-            c = position[CurrentX, i];
-            if (c == null) {r[CurrentX, i] = true;
+            c = position[data.CurrentX, i];
+            if (c == null) {r[data.CurrentX, i] = true;
             moveCount++;
         }
             else
             {
-                if (c.isWhite != isWhite)
+                if (c.data.isWhite != data.isWhite)
                 {
-                    r[CurrentX, i] = true;
+                    r[data.CurrentX, i] = true;
                     moveCount++;
                 }
                 break;
@@ -126,20 +126,20 @@ public class Rook : ChessFigure
         }
 
         // Back
-        i = CurrentY;
+        i = data.CurrentY;
         while (true)
         {
             i--;
             if (i < 0) break;
-            c = position[CurrentX, i];
-            if (c == null){ r[CurrentX, i] = true;
+            c = position[data.CurrentX, i];
+            if (c == null){ r[data.CurrentX, i] = true;
             moveCount++;
         }
             else
             {
-                if (c.isWhite != isWhite)
+                if (c.data.isWhite != data.isWhite)
                 {
-                    r[CurrentX, i] = true;
+                    r[data.CurrentX, i] = true;
                     moveCount++;
                 }
                 break;

@@ -12,9 +12,9 @@ public class King : ChessFigure
         int i, j;
 
         // Top
-        i = CurrentX - 1;
-        j = CurrentY + 1;
-        if (CurrentY < 7)
+        i = data.CurrentX - 1;
+        j = data.CurrentY + 1;
+        if (data.CurrentY < 7)
         {
             for (int k = 0; k < 3; k++)
             {
@@ -24,7 +24,7 @@ public class King : ChessFigure
                     if (c == null){ r[i, j] = true;
                         moveCount++;
                     }
-                    else if (c.isWhite != isWhite){ r[i, j] = true;
+                    else if (c.data.isWhite != data.isWhite){ r[i, j] = true;
                     moveCount++;
                 }
             }
@@ -33,9 +33,9 @@ public class King : ChessFigure
         }
 
         // Bottom
-        i = CurrentX - 1;
-        j = CurrentY - 1;
-        if (CurrentY > 0)
+        i = data.CurrentX - 1;
+        j = data.CurrentY - 1;
+        if (data.CurrentY > 0)
         {
             for (int k = 0; k < 3; k++)
             {
@@ -45,7 +45,7 @@ public class King : ChessFigure
                     if (c == null){ r[i, j] = true;
                     moveCount++;
                 }
-                else if (c.isWhite != isWhite){ r[i, j] = true;
+                else if (c.data.isWhite != data.isWhite){ r[i, j] = true;
                     moveCount++;
                 }
             }
@@ -54,25 +54,25 @@ public class King : ChessFigure
         }
 
         // Left
-        if (CurrentX > 0)
+        if (data.CurrentX > 0)
         {
-            c = position[CurrentX - 1, CurrentY];
-            if (c == null){ r[CurrentX - 1, CurrentY] = true;
+            c = position[data.CurrentX - 1, data.CurrentY];
+            if (c == null){ r[data.CurrentX - 1, data.CurrentY] = true;
             moveCount++;
         }
-        else if (c.isWhite != isWhite){ r[CurrentX - 1, CurrentY] = true;
+        else if (c.data.isWhite != data.isWhite){ r[data.CurrentX - 1, data.CurrentY] = true;
             moveCount++;
         }
     }
 
         // Left (chesstube)
-        if (CurrentX == 0)
+        if (data.CurrentX == 0)
         {
-            c = position[7, CurrentY];
-            if (c == null){ r[7, CurrentY] = true;
+            c = position[7, data.CurrentY];
+            if (c == null){ r[7, data.CurrentY] = true;
             moveCount++;
         }
-        else if (c.isWhite != isWhite){ r[7, CurrentY] = true;
+        else if (c.data.isWhite != data.isWhite){ r[7, data.CurrentY] = true;
             moveCount++;
         }
     }
@@ -80,25 +80,25 @@ public class King : ChessFigure
 
 
         // Right
-        if (CurrentX < 7)
+        if (data.CurrentX < 7)
         {
-            c = position[CurrentX + 1, CurrentY];
-            if (c == null){ r[CurrentX + 1, CurrentY] = true;
+            c = position[data.CurrentX + 1, data.CurrentY];
+            if (c == null){ r[data.CurrentX + 1, data.CurrentY] = true;
             moveCount++;
         }
-        else if (c.isWhite != isWhite){ r[CurrentX + 1, CurrentY] = true;
+        else if (c.data.isWhite != data.isWhite){ r[data.CurrentX + 1, data.CurrentY] = true;
             moveCount++;
         }
     }
 
         // Right (Chesstube)
-        if (CurrentX == 7)
+        if (data.CurrentX == 7)
         {
-            c = position[0, CurrentY];
-            if (c == null){ r[0, CurrentY] = true;
+            c = position[0, data.CurrentY];
+            if (c == null){ r[0, data.CurrentY] = true;
             moveCount++;
         }
-        else if (c.isWhite != isWhite){ r[0, CurrentY] = true;
+        else if (c.data.isWhite != data.isWhite){ r[0, data.CurrentY] = true;
             moveCount++;
         }
     }

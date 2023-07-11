@@ -12,20 +12,20 @@ public class Queen : ChessFigure
         bool reachedEnd = true;
         moveCount = 0;
 
-        int i = CurrentX;
-        int j = CurrentY;
+        int i = data.CurrentX;
+        int j = data.CurrentY;
 
         while (true)
         {
             i--;
             if (i < 0) break;
-            c = position[i, CurrentY];
-            if (c == null){ r[i, CurrentY] = true;
+            c = position[i, data.CurrentY];
+            if (c == null){ r[i, data.CurrentY] = true;
             moveCount++;
         }
             else
             {
-                if (c.isWhite != isWhite){ r[i, CurrentY] = true;
+                if (c.data.isWhite != data.isWhite){ r[i, data.CurrentY] = true;
                 moveCount++;
             }
             reachedEnd = false;
@@ -40,14 +40,14 @@ public class Queen : ChessFigure
             while (true)
             {
                 i--;
-                if (i < CurrentX) break;
-                c = position[i, CurrentY];
-                if (c == null){ r[i, CurrentY] = true;
+                if (i < data.CurrentX) break;
+                c = position[i, data.CurrentY];
+                if (c == null){ r[i, data.CurrentY] = true;
                 moveCount++;
             }
                 else
                 {
-                    if (c.isWhite != isWhite){ r[i, CurrentY] = true;
+                    if (c.data.isWhite != data.isWhite){ r[i, data.CurrentY] = true;
                     moveCount++;
                 }
                 break;
@@ -56,18 +56,18 @@ public class Queen : ChessFigure
         }
         reachedEnd = true;
         // Right
-        i = CurrentX;
+        i = data.CurrentX;
         while (true)
         {
             i++;
             if (i >= 8) break;
-            c = position[i, CurrentY];
-            if (c == null){ r[i, CurrentY] = true;
+            c = position[i, data.CurrentY];
+            if (c == null){ r[i, data.CurrentY] = true;
             moveCount++;
         }
             else
             {
-                if (c.isWhite != isWhite){ r[i, CurrentY] = true;
+                if (c.data.isWhite != data.isWhite){ r[i, data.CurrentY] = true;
                 moveCount++;
             }
             reachedEnd = false;
@@ -82,14 +82,14 @@ public class Queen : ChessFigure
             while (true)
             {
                 i++;
-                if (i >= CurrentX) break;
-                c = position[i, CurrentY];
-                if (c == null) {r[i, CurrentY] = true;
+                if (i >= data.CurrentX) break;
+                c = position[i, data.CurrentY];
+                if (c == null) {r[i, data.CurrentY] = true;
                 moveCount++;
             }
                 else
                 {
-                    if (c.isWhite != isWhite){ r[i, CurrentY] = true;
+                    if (c.data.isWhite != data.isWhite){ r[i, data.CurrentY] = true;
                     moveCount++;
                 }
                 break;
@@ -98,18 +98,18 @@ public class Queen : ChessFigure
         }
 
         // Forward
-        i = CurrentY;
+        i = data.CurrentY;
         while (true)
         {
             i++;
             if (i >= 8) break;
-            c = position[CurrentX, i];
-            if (c == null){ r[CurrentX, i] = true;
+            c = position[data.CurrentX, i];
+            if (c == null){ r[data.CurrentX, i] = true;
             moveCount++;
         }
             else
             {
-                if (c.isWhite != isWhite){ r[CurrentX, i] = true;
+                if (c.data.isWhite != data.isWhite){ r[data.CurrentX, i] = true;
                 moveCount++;
             }
             break;
@@ -117,26 +117,26 @@ public class Queen : ChessFigure
         }
 
         // Back
-        i = CurrentY;
+        i = data.CurrentY;
         while (true)
         {
             i--;
             if (i < 0) break;
-            c = position[CurrentX, i];
-            if (c == null){ r[CurrentX, i] = true;
+            c = position[data.CurrentX, i];
+            if (c == null){ r[data.CurrentX, i] = true;
             moveCount++;
         }
             else
             {
-                if (c.isWhite != isWhite){ r[CurrentX, i] = true;
+                if (c.data.isWhite != data.isWhite){ r[data.CurrentX, i] = true;
                 moveCount++;
             }
             break;
             }
         }
         // Top Left
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
 
 
         while (true)
@@ -158,7 +158,7 @@ public class Queen : ChessFigure
             }
             else
             {
-                if (c.isWhite != isWhite){ r[i, j] = true;
+                if (c.data.isWhite != data.isWhite){ r[i, j] = true;
                 moveCount++;
             }
                 break;
@@ -166,8 +166,8 @@ public class Queen : ChessFigure
         }
 
         // Top Right
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
         while (true)
         {
             i++;
@@ -187,7 +187,7 @@ public class Queen : ChessFigure
             }
             else
             {
-                if (c.isWhite != isWhite){ r[i, j] = true;
+                if (c.data.isWhite != data.isWhite){ r[i, j] = true;
                 moveCount++;
             }
                 break;
@@ -195,8 +195,8 @@ public class Queen : ChessFigure
         }
 
         // Bottom Left
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
         while (true)
         {
             i--;
@@ -214,7 +214,7 @@ public class Queen : ChessFigure
             }
             else
             {
-                if (c.isWhite != isWhite) {r[i, j] = true;
+                if (c.data.isWhite != data.isWhite) {r[i, j] = true;
                 moveCount++;
             }
                 break;
@@ -222,8 +222,8 @@ public class Queen : ChessFigure
         }
 
         // Bottom Right
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
         while (true)
         {
             i++;
@@ -239,7 +239,7 @@ public class Queen : ChessFigure
         }
             else
             {
-                if (c.isWhite != isWhite){ r[i, j] = true;
+                if (c.data.isWhite != data.isWhite){ r[i, j] = true;
                 moveCount++;
             }
             break;

@@ -20,7 +20,6 @@ public class BoardHighlighting : MonoBehaviour
         highlights = new List<GameObject>();
 
     }
-
     private GameObject GetHighlightObject()
     {
         GameObject go = highlights.Find(g => !g.activeSelf);
@@ -45,6 +44,15 @@ public class BoardHighlighting : MonoBehaviour
                     go.transform.position = new Vector3(i + 0.5f, 0, j + 0.5f);
                 }
             }
+        }
+    }
+    public void HighlightAllowedMoves(List<Vector2> moves)
+    {
+        foreach(Vector2 move in moves)
+        { 
+            GameObject go = GetHighlightObject();
+            go.SetActive(true);
+            go.transform.position = new Vector3(move.x + 0.5f, 0, move.y + 0.5f);
         }
     }
 

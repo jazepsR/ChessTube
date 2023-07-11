@@ -10,59 +10,59 @@ public class Pawn : ChessFigure
         moveCount = 0;
         ChessFigure c, c2;
 
-        if (isWhite)
+        if (data.isWhite)
         {
             // Diagonal Left
-            if (CurrentX != 0 && CurrentY != 7)
+            if (data.CurrentX != 0 && data.CurrentY != 7)
             {
-                c = position[CurrentX - 1, CurrentY + 1];
-                if (c != null && !c.isWhite){ r[CurrentX - 1, CurrentY + 1] = true;
+                c = position[data.CurrentX - 1, data.CurrentY + 1];
+                if (c != null && !c.data.isWhite){ r[data.CurrentX - 1, data.CurrentY + 1] = true;
                 moveCount++;
             }
         }
 
             // Diagonal Left (chess tube)
-            if (CurrentX == 0 && CurrentY != 7)
+            if (data.CurrentX == 0 && data.CurrentY != 7)
             {
-                c = position[7, CurrentY + 1];
-                if (c != null && !c.isWhite){ r[7, CurrentY + 1] = true;
+                c = position[7, data.CurrentY + 1];
+                if (c != null && !c.data.isWhite){ r[7, data.CurrentY + 1] = true;
                 moveCount++;
             }
         }
 
 
             // Diagonal Right
-            if (CurrentX != 7 && CurrentY != 7)
+            if (data.CurrentX != 7 && data.CurrentY != 7)
             {
-                c = position[CurrentX + 1, CurrentY + 1];
-                if (c != null && !c.isWhite){ r[CurrentX + 1, CurrentY + 1] = true;
+                c = position[data.CurrentX + 1, data.CurrentY + 1];
+                if (c != null && !c.data.isWhite){ r[data.CurrentX + 1, data.CurrentY + 1] = true;
                 moveCount++;
             }
         }
 
             // Diagonal Right (chess tube)
-            if (CurrentX == 7 && CurrentY != 7)
+            if (data.CurrentX == 7 && data.CurrentY != 7)
             {
-                c = position[0, CurrentY + 1];
-                if (c != null && !c.isWhite){ r[0, CurrentY + 1] = true;
+                c = position[0, data.CurrentY + 1];
+                if (c != null && !c.data.isWhite){ r[0, data.CurrentY + 1] = true;
                 moveCount++;
             }
         }
 
             // Forward
-            if (CurrentY != 7)
+            if (data.CurrentY != 7)
             {
-                c = position[CurrentX, CurrentY + 1];
-                if (c == null){ r[CurrentX, CurrentY + 1] = true;
+                c = position[data.CurrentX, data.CurrentY + 1];
+                if (c == null){ r[data.CurrentX, data.CurrentY + 1] = true;
                 moveCount++;
             }
         }
             // Two Steps Forward
-            if (CurrentY == 1)
+            if (data.CurrentY == 1)
             {
-                c = position[CurrentX, CurrentY + 1];
-                c2 = position[CurrentX, CurrentY + 2];
-                if (c == null && c2 == null){ r[CurrentX, CurrentY + 2] = true;
+                c = position[data.CurrentX, data.CurrentY + 1];
+                c2 = position[data.CurrentX, data.CurrentY + 2];
+                if (c == null && c2 == null){ r[data.CurrentX, data.CurrentY + 2] = true;
                 moveCount++;
             }
         }
@@ -70,56 +70,56 @@ public class Pawn : ChessFigure
         else
         {
             // Diagonal Left
-            if (CurrentX != 0 && CurrentY != 0)
+            if (data.CurrentX != 0 && data.CurrentY != 0)
             {
-                c = position[CurrentX - 1, CurrentY - 1];
-                if (c != null && c.isWhite){ r[CurrentX - 1, CurrentY - 1] = true;
+                c = position[data.CurrentX - 1, data.CurrentY - 1];
+                if (c != null && c.data.isWhite){ r[data.CurrentX - 1, data.CurrentY - 1] = true;
                 moveCount++;
             }
         }
 
             // Diagonal Left (chess tube)
-            if (CurrentX == 0 && CurrentY != 0)
+            if (data.CurrentX == 0 && data.CurrentY != 0)
             {
-                c = position[7, CurrentY - 1];
-                if (c != null && c.isWhite){ r[7, CurrentY - 1] = true;
+                c = position[7, data.CurrentY - 1];
+                if (c != null && c.data.isWhite){ r[7, data.CurrentY - 1] = true;
                 moveCount++;
             }
         }
 
             // Diagonal Right
-            if (CurrentX != 7 && CurrentY != 0)
+            if (data.CurrentX != 7 && data.CurrentY != 0)
             {
-                c = position[CurrentX + 1, CurrentY - 1];
-                if (c != null && c.isWhite){ r[CurrentX + 1, CurrentY - 1] = true;
+                c = position[data.CurrentX + 1, data.CurrentY - 1];
+                if (c != null && c.data.isWhite){ r[data.CurrentX + 1, data.CurrentY - 1] = true;
                 moveCount++;
             }
         }
 
             // Diagonal Right (chess tube)
-            if (CurrentX == 7 && CurrentY != 0)
+            if (data.CurrentX == 7 && data.CurrentY != 0)
             {
-                c = position[0, CurrentY - 1];
-                if (c != null && c.isWhite){ r[0, CurrentY - 1] = true;
+                c = position[0, data.CurrentY - 1];
+                if (c != null && c.data.isWhite){ r[0, data.CurrentY - 1] = true;
                 moveCount++;
             }
         }
 
             // Forward
-            if (CurrentY != 0)
+            if (data.CurrentY != 0)
             {
-                c = position[CurrentX, CurrentY - 1];
-                if (c == null){ r[CurrentX, CurrentY - 1] = true;
+                c = position[data.CurrentX, data.CurrentY - 1];
+                if (c == null){ r[data.CurrentX, data.CurrentY - 1] = true;
                 moveCount++;
             }
         }
 
             // Two Steps Forward
-            if (CurrentY == 6)
+            if (data.CurrentY == 6)
             {
-                c = position[CurrentX, CurrentY - 1];
-                c2 = position[CurrentX, CurrentY - 2];
-                if (c == null && c2 == null){ r[CurrentX, CurrentY - 2] = true;
+                c = position[data.CurrentX, data.CurrentY - 1];
+                c2 = position[data.CurrentX, data.CurrentY - 2];
+                if (c == null && c2 == null){ r[data.CurrentX, data.CurrentY - 2] = true;
                 moveCount++;
             }
         }

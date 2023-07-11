@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class GameTypeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -25,9 +25,13 @@ public class GameTypeManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SetBotType(BotType.SimpleEvaluation);
+            SetGameMode(GameType.OnlineMP);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SetBotType(BotType.SimpleEvaluation);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             SetBotType(BotType.MinMax);
         }

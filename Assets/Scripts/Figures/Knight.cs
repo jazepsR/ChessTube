@@ -12,20 +12,20 @@ public class Knight : ChessFigure
         moveCount = 0;
 
         // Up / Left
-        KnightMove(CurrentX - 1, CurrentY + 2, ref r);
-        KnightMove(CurrentX - 2, CurrentY + 1, ref r);
+        KnightMove(data.CurrentX - 1, data.CurrentY + 2, ref r);
+        KnightMove(data.CurrentX - 2, data.CurrentY + 1, ref r);
 
         // Up / Right
-        KnightMove(CurrentX + 1, CurrentY + 2, ref r);
-        KnightMove(CurrentX + 2, CurrentY + 1, ref r);
+        KnightMove(data.CurrentX + 1, data.CurrentY + 2, ref r);
+        KnightMove(data.CurrentX + 2, data.CurrentY + 1, ref r);
 
         // Down / Left
-        KnightMove(CurrentX - 1, CurrentY - 2, ref r);
-        KnightMove(CurrentX - 2, CurrentY - 1, ref r);
+        KnightMove(data.CurrentX - 1, data.CurrentY - 2, ref r);
+        KnightMove(data.CurrentX - 2, data.CurrentY - 1, ref r);
 
         // Down / Right
-        KnightMove(CurrentX + 1, CurrentY - 2, ref r);
-        KnightMove(CurrentX + 2, CurrentY - 1, ref r);
+        KnightMove(data.CurrentX + 1, data.CurrentY - 2, ref r);
+        KnightMove(data.CurrentX + 2, data.CurrentY - 1, ref r);
 
         return r;
     }
@@ -49,7 +49,7 @@ public class Knight : ChessFigure
             if (c == null){ r[x, y] = true;
             moveCount++;
         }
-        else if (c.isWhite != isWhite){ r[x, y] = true;
+        else if (c.data.isWhite != data.isWhite){ r[x, y] = true;
             moveCount++;
         }
     }

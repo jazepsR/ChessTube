@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Bishop : ChessFigure
 {
     public override bool[,] PossibleMove(ChessFigure[,] position)
@@ -12,8 +11,8 @@ public class Bishop : ChessFigure
         int i, j;
 
         // Top Left
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
         while (true)
         {           
             j++;
@@ -33,7 +32,7 @@ public class Bishop : ChessFigure
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (c.data.isWhite != data.isWhite)
                 {
                     moveCount++;
                     r[i, j] = true;
@@ -43,8 +42,8 @@ public class Bishop : ChessFigure
         }
 
         // Top Right
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
         while (true)
         {
             i++;
@@ -65,7 +64,7 @@ public class Bishop : ChessFigure
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (c.data.isWhite != data.isWhite)
                 {
                     r[i, j] = true;
                     moveCount++;
@@ -75,8 +74,8 @@ public class Bishop : ChessFigure
         }
 
         // Bottom Left
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
         while (true)
         {
             i--;
@@ -93,7 +92,7 @@ public class Bishop : ChessFigure
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (c.data.isWhite != data.isWhite)
                 {
                 r[i, j] = true;
                 moveCount++;
@@ -103,8 +102,8 @@ public class Bishop : ChessFigure
         }
 
         // Bottom Right
-        i = CurrentX;
-        j = CurrentY;
+        i = data.CurrentX;
+        j = data.CurrentY;
         while (true)
         {
             i++;
@@ -122,7 +121,7 @@ public class Bishop : ChessFigure
             }
             else
             {
-            if (c.isWhite != isWhite)
+            if (c.data.isWhite != data.isWhite)
             {
                 r[i, j] = true;
                 moveCount++;
@@ -133,4 +132,6 @@ public class Bishop : ChessFigure
 
         return r;
     }
+
+    
 }

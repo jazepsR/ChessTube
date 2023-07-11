@@ -13,7 +13,7 @@ public class BotController : MonoBehaviour
     Vector2Int lastMove;
     bool isWhite = false;
     ChessFigure bestFigure = null;
-    Vector2Int bestMove = new Vector2Int(-1, -1);
+    Vector2 bestMove = new Vector2(-1, -1);
 
     private void Awake()
     {
@@ -28,9 +28,9 @@ public class BotController : MonoBehaviour
         {
             for (int j = 0; j < 8; j++)
             {
-                if (boardState[i,j])
+                if (boardState[i,j]!= null)
                 {
-                    if (boardState[i, j].isWhite == isWhite)
+                    if (boardState[i, j].data.isWhite == isWhite)
                     {
                         boardState[i, j].PossibleMove(boardState);
                         if (boardState[i, j].moveCount > 0)
@@ -44,16 +44,16 @@ public class BotController : MonoBehaviour
         return figures;
     }
 
-    public Vector2Int GetMove(bool isWhite, ChessFigure[,] boardState)
+    public Vector2 GetMove(bool isWhite, ChessFigure[,] boardState)
     {
         var figures = GetFigureList(boardState,isWhite);
 
         switch(botType)
         {
             case BotType.Random:
-                FigureMover.selectedFigure = figures[Random.Range(0, figures.Count)];
+                FigureMover.Instance.selectedFigure = figures[Random.Range(0, figures.Count)];
                 Debug.Log("Board state evaluation: " + EvaluateBoardState(boardState, isWhite));
-                return FigureMover.selectedFigure.MoveCoordinateList(boardState)[Random.Range(0, FigureMover.selectedFigure.moveCount)];
+                return FigureMover.Instance.selectedFigure.MoveCoordinateList(boardState)[Random.Range(0, FigureMover.Instance.selectedFigure.moveCount)];
             case BotType.SimpleEvaluation:
                 float bestEvaluation = -1000;
                 for(int i= 0;i<figures.Count;i++)
@@ -72,13 +72,13 @@ public class BotController : MonoBehaviour
                       //  boardState = ReverseLastMove(tempBoard);
                     }
                 }
-                FigureMover.selectedFigure = bestFigure;
+                FigureMover.Instance.selectedFigure = bestFigure;
                 ResetPieces();
                 return bestMove;
             case BotType.MinMax:
                 tempBoard = boardState;
                 Minmax(boardState, 3, true);
-                FigureMover.selectedFigure = bestFigure;
+                FigureMover.Instance.selectedFigure = bestFigure;
                 ResetPieces();
                 return bestMove;
 
@@ -193,32 +193,31 @@ public class BotController : MonoBehaviour
         {
             for (int j = 0; j < 8; j++)
             {
-                if(board[i,j])
+                if(board[i,j] != null)
                 {
                     board[i, j].SetPosition(i, j);
                 }
             }
-
         }
     }
 
-    private ChessFigure[,] MakeMove(ChessFigure[,] boardState, ChessFigure figure, Vector2Int move, bool isWhiteMove)
+    private ChessFigure[,] MakeMove(ChessFigure[,] boardState, ChessFigure figure, Vector2 move, bool isWhiteMove)
     {
         ChessFigure[,] tempState = new ChessFigure[8, 8];
         for(int i=0;i<8;i++)
         {
             for (int j = 0; j< 8; j++)
             {
-                if(boardState[i,j])
+                if(boardState[i,j] != null)
                 {
                     tempState[i, j] = boardState[i, j];
                 }
             }
         }
-        ChessFigure figToKill = tempState[move.x,move.y];
-        if (figToKill != null && figToKill.isWhite != isWhiteMove)
+        ChessFigure figToKill = tempState[(int)move.x, (int)move.y];
+        if (figToKill != null && figToKill.data.isWhite != isWhiteMove)
         {
-            tempState[move.x, move.y] = null;
+            tempState[(int)move.x, (int)move.y] = null;
         }
         for(int i = 0;i<8;i++)
         {
@@ -237,8 +236,8 @@ public class BotController : MonoBehaviour
         }
 
        // tempState[figure.CurrentX, figure.CurrentY] = null;
-        tempState[move.x, move.y] = figure;
-        figure.SetPosition(move.x, move.y);
+        tempState[(int)move.x, (int)move.y] = figure;
+        figure.SetPosition((int)move.x, (int)move.y);
         return tempState;
     }
 
@@ -252,8 +251,8 @@ public class BotController : MonoBehaviour
                 if(boardState[i,j]!= null)
                 {
                     int figVal = 0;
-                    figValues.TryGetValue(boardState[i, j].type, out figVal);
-                    if( boardState[i,j].isWhite != isWhite)
+                    figValues.TryGetValue(boardState[i, j].data.type, out figVal);
+                    if( boardState[i,j].data.isWhite != isWhite)
                     {
                         figVal = -figVal;
                     }

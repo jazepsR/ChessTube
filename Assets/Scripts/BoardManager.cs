@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+    public bool isPlayerWhite  = true;
     // Start is called before the first frame update
 
     public static int selectionX;
     public static int selectionY;
+    public static BoardManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
 
     void Start()
     {
